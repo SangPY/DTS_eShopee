@@ -4,14 +4,16 @@ using DTS_eShopee.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DTS_eShopee.Data.Migrations
 {
     [DbContext(typeof(DTSEShopeeDbContext))]
-    partial class DTSEShopeeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250318153254_SeedDataIdentityTable")]
+    partial class SeedDataIdentityTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
