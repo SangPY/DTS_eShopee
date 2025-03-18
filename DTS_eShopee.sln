@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTS_eShopee.Data", "DTS_eSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTS_eShopee.Application", "DTS_eShopee.Application\DTS_eShopee.Application.csproj", "{B7B9C65E-8FC7-33A8-1367-6F4035023F44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTS_eShopee.Utilities", "DTS_eShopee.Utilities\DTS_eShopee.Utilities.csproj", "{8AD4B93C-00D1-452D-A2B0-F3B50A11AF6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{B7B9C65E-8FC7-33A8-1367-6F4035023F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7B9C65E-8FC7-33A8-1367-6F4035023F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7B9C65E-8FC7-33A8-1367-6F4035023F44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AD4B93C-00D1-452D-A2B0-F3B50A11AF6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AD4B93C-00D1-452D-A2B0-F3B50A11AF6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AD4B93C-00D1-452D-A2B0-F3B50A11AF6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD4B93C-00D1-452D-A2B0-F3B50A11AF6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
