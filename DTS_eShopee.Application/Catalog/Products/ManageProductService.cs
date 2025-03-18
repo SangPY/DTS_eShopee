@@ -1,4 +1,4 @@
-﻿using DTS_eShopee.Application.Catalog.Products.Dtos;
+﻿using DTS_eShopee.Application.Catalog.Products.Dtos.Manage;
 using DTS_eShopee.Application.Dtos;
 using DTS_eShopee.Data.EF;
 using DTS_eShopee.Data.Entities;
@@ -16,6 +16,11 @@ namespace DTS_eShopee.Application.Catalog.Products
         public ManageProductService(DTSEShopeeDbContext context)
         {
             _context = context;
+        }
+
+        public Task AddViewcount(int productId)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<int> Create(ProductCreateRequest request)
@@ -38,12 +43,22 @@ namespace DTS_eShopee.Application.Catalog.Products
             throw new NotImplementedException();
         }
 
-        public Task<PagedViewModel<ProductViewModel>> GetAllPaging(string keyword, int pageIndex, int pageSize)
+        public Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> Update(ProductEditRequest request)
+        public Task<int> Update(ProductUpdateRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdatePrice(int productId, decimal newpPrice)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateStock(int productId, int addedQuantity)
         {
             throw new NotImplementedException();
         }
