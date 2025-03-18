@@ -4,14 +4,16 @@ using DTS_eShopee.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DTS_eShopee.Data.Migrations
 {
     [DbContext(typeof(DTSEShopeeDbContext))]
-    partial class DTSEShopeeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250318152426_IdentityTable")]
+    partial class IdentityTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,16 +75,6 @@ namespace DTS_eShopee.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "aced1151-94ef-43a1-a729-7d0f48ad8286",
-                            Description = "Administrator role",
-                            Name = "admin",
-                            NormalizedName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("DTS_eShopee.Data.Entities.AppUser", b =>
@@ -149,27 +141,6 @@ namespace DTS_eShopee.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "7a5be5d7-2638-460a-aa99-b3af5137de18",
-                            Dob = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "sangdothanh95@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Sang",
-                            LastName = "Do Thanh",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "sangdothanh95@gmail.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDW8Q0Q0XaeNLJGLB8MM17R0yfKEtOWY5LbkbtlfM4TXQdZn3I1OeKyLiqp8VwSqww==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("DTS_eShopee.Data.Entities.Cart", b =>
@@ -418,7 +389,7 @@ namespace DTS_eShopee.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 3, 18, 22, 32, 53, 604, DateTimeKind.Local).AddTicks(7587));
+                        .HasDefaultValue(new DateTime(2025, 3, 18, 22, 24, 25, 906, DateTimeKind.Local).AddTicks(1571));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
@@ -517,7 +488,7 @@ namespace DTS_eShopee.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2025, 3, 18, 22, 32, 53, 619, DateTimeKind.Local).AddTicks(1794),
+                            DateCreated = new DateTime(2025, 3, 18, 22, 24, 25, 922, DateTimeKind.Local).AddTicks(5998),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -781,13 +752,6 @@ namespace DTS_eShopee.Data.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("AppUserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
