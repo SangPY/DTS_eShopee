@@ -1,0 +1,22 @@
+﻿using DTS_eShopee.Application.Catalog.Products.Dtos;
+using DTS_eShopee.Application.Dtos;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DTS_eShopee.Application.Catalog.Products
+{
+    public interface IManageProductService
+    {
+        Task<int> Create(ProductCreateRequest request);
+
+        Task<int> Update(ProductEditRequest request);
+
+        Task<int> Delete(int productId);
+
+        Task<List<ProductViewModel>> GetAll();
+
+        Task<PagedViewModel<ProductViewModel>> GetAllPaging(string keyword, int pageIndex, int pageSize);
+    }
+}

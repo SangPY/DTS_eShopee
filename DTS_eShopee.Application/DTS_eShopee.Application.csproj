@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DTS_eShopee.Data\DTS_eShopee.Data.csproj" />
+  </ItemGroup>
+
 </Project>
