@@ -1,4 +1,6 @@
-﻿using DTS_eShopee.Data.Entities;
+﻿using DTS_eShopee.Data.Configurations;
+using DTS_eShopee.Data.Entities;
+using DTS_eShopee.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,33 @@ namespace DTS_eShopee.Data.EF
 
         protected DTSEShopeeDbContext()
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Configure using Fluent API
+            modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new CartConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryTranslationConfiguration());
+            modelBuilder.ApplyConfiguration(new ContactConfiguration());
+            modelBuilder.ApplyConfiguration(new LanguageConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderDetailConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductInCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
+            modelBuilder.ApplyConfiguration(new PromotionConfiguration());
+            modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+
+            // Data seeding
+            //modelBuilder.Entity<AppConfig>().HasData(
+            //    new AppConfig() { Key = "HomeTitle", Value ="This is home page of DTS EShopSolution"},
+            //    new AppConfig() { Key = "HomeKeyWord", Value = "This is keyword of DTS EShopSolution" },
+            //    new AppConfig() { Key = "HomeDescription", Value = "This is description of DTS EShopSolution" }
+            //    );
+            modelBuilder.Seed();
+            //base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Product> Products { get; set; }
