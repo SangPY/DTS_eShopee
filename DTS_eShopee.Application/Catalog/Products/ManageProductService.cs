@@ -126,19 +126,39 @@ namespace DTS_eShopee.Application.Catalog.Products
             return pagedResult;
         }
 
-        public Task<int> Update(ProductUpdateRequest request)
+        public async Task<int> Update(ProductUpdateRequest request)
         {
-            throw new NotImplementedException();
+            var product = _context.Products.Find(request.Id);
+            var productTranslations = _context.ProductTranslations.
+                FirstOrDefault(x => x.ProductId == request.Id && x.LanguageId == request.LanguageId);
+            if (product == null) throw new DTSEShopeeException($"Cannot find a product: {request.Id}");
+
+            productTranslations.Name = request.Name;
+            productTranslations.Description = request.Description;
+            productTranslations.SeoDescription = request.SeoDescription;
+            productTranslations.SeoAlias = request.SeoAlias;
+            productTranslations.Details = request.Details;
+            productTranslations.SeoTitle = request.SeoTitle;
+
+            return await _context.SaveChangesAsync();
         }
 
-        public Task<bool> UpdatePrice(int productId, decimal newpPrice)
+        public async Task<bool> UpdatePrice(int productId, decimal newpPrice)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null) throw new DTSEShopeeException($"Cannot find a product: {productId}");
+
+            product.Price = newpPrice;
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> UpdateStock(int productId, int addedQuantity)
+        public async Task<bool> UpdateStock(int productId, int addedQuantity)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null) throw new DTSEShopeeException($"Cannot find a product: {productId}");
+
+            product.Stock += addedQuantity;
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }

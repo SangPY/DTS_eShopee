@@ -6,7 +6,7 @@ namespace DTS_eShopee.Application.Catalog.Products.Dtos.Manage
 {
     public class ProductUpdateRequest
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public string Name { set; get; }
 
