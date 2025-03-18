@@ -1,4 +1,4 @@
-﻿using DTS_eShopee.Application.Catalog.Products.Dtos.Manage;
+﻿using DTS_eShopee.Application.Catalog.Products.Dtos;
 using DTS_eShopee.Application.Dtos;
 using System;
 using System.Collections.Generic;

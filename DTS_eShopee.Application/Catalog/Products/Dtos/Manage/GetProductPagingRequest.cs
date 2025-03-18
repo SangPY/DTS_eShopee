@@ -9,6 +9,6 @@ namespace DTS_eShopee.Application.Catalog.Products.Dtos.Manage
     {
         public string Keyword { get; set; }
 
-        public List<int> CategoryID { get; set; }
+        public List<int> CategoryIds { get; set; }
     }
 }
