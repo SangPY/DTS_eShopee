@@ -11,5 +11,8 @@ namespace DTS_eShopee.Application.Catalog.Products
     {
         //PagedResult<ProductViewModel> GetAllByCategoryId(int categoryId, int pageIndex, int pageSize);
         Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetProductPagingRequest request);
+
+        // Thêm này get dữ liệu test backend api
+        Task<List<ProductViewModel>> GetAll();
     }
 }
