@@ -1,5 +1,5 @@
-﻿using DTS_eShopee.Application.Catalog.Products.Dtos.Manage;
-using DTS_eShopee.Application.Dtos;
+﻿using DTS_eShopee.ViewModels.Catalog.Products.Manage;
+using DTS_eShopee.ViewModels.Common;
 using DTS_eShopee.Data.EF;
 using DTS_eShopee.Data.Entities;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using DTS_eShopee.Utilities;
-using DTS_eShopee.Application.Catalog.Products.Dtos;
+using DTS_eShopee.ViewModels.Catalog.Products;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 

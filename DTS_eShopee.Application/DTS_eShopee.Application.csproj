@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.3.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DTS_eShopee.Data\DTS_eShopee.Data.csproj" />
     <ProjectReference Include="..\DTS_eShopee.Utilities\DTS_eShopee.Utilities.csproj" />
+    <ProjectReference Include="..\DTS_eShopee.ViewModels\DTS_eShopee.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

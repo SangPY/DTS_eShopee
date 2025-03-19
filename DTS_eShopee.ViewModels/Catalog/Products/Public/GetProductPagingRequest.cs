@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DTS_eShopee.Application.Dtos;
+using DTS_eShopee.ViewModels.Common;
 
-namespace DTS_eShopee.Application.Catalog.Products.Dtos.Public
+namespace DTS_eShopee.ViewModels.Catalog.Products.Public
 {
     public class GetProductPagingRequest : PagingRequestBase
     {
