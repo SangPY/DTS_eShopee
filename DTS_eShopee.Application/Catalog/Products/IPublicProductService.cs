@@ -1,6 +1,5 @@
-﻿using DTS_eShopee.Application.Catalog.Products.Dtos;
-using DTS_eShopee.Application.Catalog.Products.Dtos.Public;
-using DTS_eShopee.Application.Dtos;
+﻿using DTS_eShopee.ViewModels.Catalog.Products;
+using DTS_eShopee.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;

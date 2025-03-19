@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DTS_eShopee.Application.Catalog.Products.Dtos.Manage
+namespace DTS_eShopee.ViewModels.Catalog.Products
 {
-    public class ProductCreateRequest
+    public class ProductUpdateRequest
     {
-        public decimal Price { get; set; }
-
-        public decimal OriginalPrice { get; set; }
-
-        public int Stock { set; get; }
+        public int Id { get; set; }
 
         public string Name { set; get; }
 
@@ -25,5 +22,7 @@ namespace DTS_eShopee.Application.Catalog.Products.Dtos.Manage
         public string SeoAlias { get; set; }
 
         public string LanguageId { set; get; }
+
+        public IFormFile ThumbnailImage { get; set; }
     }
 }

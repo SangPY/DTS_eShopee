@@ -1,5 +1,4 @@
-﻿using DTS_eShopee.Application.Catalog.Products.Dtos.Manage;
-using DTS_eShopee.Application.Dtos;
+﻿using DTS_eShopee.ViewModels.Common;
 using DTS_eShopee.Data.EF;
 using DTS_eShopee.Data.Entities;
 using System;
@@ -7,19 +6,25 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using DTS_eShopee.Utilities;
-using DTS_eShopee.Application.Catalog.Products.Dtos;
+using DTS_eShopee.ViewModels.Catalog.Products;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using DTS_eShopee.Application.Common;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace DTS_eShopee.Application.Catalog.Products
 {
     public class ManageProductService : IManageProductService
     {
         private readonly DTSEShopeeDbContext _context;
+        private readonly IStorageService _storageService;
 
-        public ManageProductService(DTSEShopeeDbContext context)
+        public ManageProductService(DTSEShopeeDbContext context, IStorageService storageService)
         {
             _context = context;
+            _storageService = storageService;
         }
 
         public async Task AddViewcount(int productId)
@@ -52,8 +57,34 @@ namespace DTS_eShopee.Application.Catalog.Products
                     }
                 }
             };
+
+            // Save image
+            if (request.ThumbnailImage != null)
+            {
+                product.ProductImages = new List<ProductImage>()
+                 {
+                     new ProductImage()
+                     {
+                         Caption = "Thumbnail image",
+                         DateCreated = DateTime.Now,
+                         FileSize = request.ThumbnailImage.Length,
+                         ImagePath = await this.SaveFile(request.ThumbnailImage),
+                         IsDefault = true,
+                         SortOrder = 1
+                     }
+                 };
+            }
+
             _context.Products.Add(product);
             return await _context.SaveChangesAsync();
+        }
+
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
+            return fileName;
         }
 
         public async Task<int> Delete(int productId)
@@ -61,11 +92,11 @@ namespace DTS_eShopee.Application.Catalog.Products
             var product = await _context.Products.FindAsync(productId);
             if (product == null) throw new DTSEShopeeException($"Cannot find a product: {productId}");
 
-            //var images = _context.ProductImages.Where(i => i.ProductId == productId);
-            //foreach (var image in images)
-            //{
-            //    await _storageService.DeleteFileAsync(image.ImagePath);
-            //}
+            var images = _context.ProductImages.Where(i => i.ProductId == productId);
+            foreach (var image in images)
+            {
+                await _storageService.DeleteFileAsync(image.ImagePath);
+            }
 
             _context.Products.Remove(product);
 
@@ -77,7 +108,7 @@ namespace DTS_eShopee.Application.Catalog.Products
             throw new NotImplementedException();
         }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             //1. Select join LINQ
             var query = from p in _context.Products
@@ -139,6 +170,18 @@ namespace DTS_eShopee.Application.Catalog.Products
             productTranslations.SeoAlias = request.SeoAlias;
             productTranslations.Details = request.Details;
             productTranslations.SeoTitle = request.SeoTitle;
+
+            //Save image
+            if (request.ThumbnailImage != null)
+            {
+                var thumbnailImage = await _context.ProductImages.FirstOrDefaultAsync(i => i.IsDefault == true && i.ProductId == request.Id);
+                if (thumbnailImage != null)
+                {
+                    thumbnailImage.FileSize = request.ThumbnailImage.Length;
+                    thumbnailImage.ImagePath = await this.SaveFile(request.ThumbnailImage);
+                    _context.ProductImages.Update(thumbnailImage);
+                }
+            }
 
             return await _context.SaveChangesAsync();
         }
