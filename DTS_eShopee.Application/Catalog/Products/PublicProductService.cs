@@ -1,5 +1,4 @@
 ﻿using DTS_eShopee.ViewModels.Catalog.Products;
-using DTS_eShopee.ViewModels.Catalog.Products.Public;
 using DTS_eShopee.ViewModels.Common;
 using DTS_eShopee.Data.EF;
 using System;

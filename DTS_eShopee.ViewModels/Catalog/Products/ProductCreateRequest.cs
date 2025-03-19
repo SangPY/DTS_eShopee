@@ -3,11 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DTS_eShopee.ViewModels.Catalog.Products.Manage
+namespace DTS_eShopee.ViewModels.Catalog.Products
 {
-    public class ProductUpdateRequest
+    public class ProductCreateRequest
     {
-        public int Id { get; set; }
+        public decimal Price { get; set; }
+
+        public decimal OriginalPrice { get; set; }
+
+        public int Stock { set; get; }
 
         public string Name { set; get; }
 
