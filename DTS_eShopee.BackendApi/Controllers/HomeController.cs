@@ -20,7 +20,7 @@ namespace DTS_eShopee.BackendApi.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Ok();
         }
 
         public IActionResult Privacy()

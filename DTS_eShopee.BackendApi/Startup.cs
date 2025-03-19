@@ -1,6 +1,10 @@
+using DTS_eShopee.Application.Catalog.Products;
+using DTS_eShopee.Data.EF;
+using DTS_eShopee.Utilities.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +27,12 @@ namespace DTS_eShopee.BackendApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DTSEShopeeDbContext>(options =>
+                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
+
+            //Declare DI
+            services.AddTransient<IPublicProductService, PublicProductService>();
+
             services.AddControllersWithViews();
         }
 

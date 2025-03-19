@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DTS_eShopee.Utilities
+namespace DTS_eShopee.Utilities.Exceptions
 {
     public class DTSEShopeeException : Exception
     {
