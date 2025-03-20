@@ -1,4 +1,5 @@
-﻿using DTS_eShopee.ViewModels.Catalog.Products;
+﻿using DTS_eShopee.ViewModels.Catalog.ProductImages;
+using DTS_eShopee.ViewModels.Catalog.Products;
 using DTS_eShopee.ViewModels.Common;
 using System;
 using System.Collections.Generic;
@@ -26,5 +27,13 @@ namespace DTS_eShopee.Application.Catalog.Products
         Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
 
         Task<ProductViewModel> GetById(int productId, string languageId);
+
+        Task<int> AddImage(int productId, ProductImageCreateRequest product);
+
+        Task<int> RemoveImage(int imageId);
+
+        Task<int> UpdateImage(int imageId, ProductImageUpdateRequest product);
+
+        Task<ProductImageViewModel> GetImageById(int imageId);
     }
 }

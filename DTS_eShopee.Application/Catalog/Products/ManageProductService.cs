@@ -13,6 +13,8 @@ using DTS_eShopee.Application.Common;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Net.Http.Headers;
+using DTS_eShopee.ViewModels.Catalog.ProductImages;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DTS_eShopee.Application.Catalog.Products
 {
@@ -228,6 +230,74 @@ namespace DTS_eShopee.Application.Catalog.Products
                 ViewCount = product.ViewCount
             };
             return productViewModel;
+        }
+
+        public async Task<int> AddImage(int productId, ProductImageCreateRequest request)
+        {
+            var productImage = new ProductImage()
+            {
+                Caption = request.Caption,
+                DateCreated = DateTime.Now,
+                IsDefault = request.IsDefault,
+                ProductId = productId,
+                SortOrder = request.SortOrder
+            };
+
+            if (request.ImageFile != null)
+            {
+                productImage.FileSize = request.ImageFile.Length;
+                productImage.ImagePath = await this.SaveFile(request.ImageFile);
+            }
+
+            _context.ProductImages.Add(productImage);
+            await _context.SaveChangesAsync();
+            return productImage.Id;
+        }
+
+        public async Task<int> RemoveImage(int imageId)
+        {
+            var productImage = await _context.ProductImages.FindAsync(imageId);
+            if (productImage == null) throw new DTSEShopeeException($"Cannot find an image with id: {imageId}");
+
+            _context.ProductImages.Remove(productImage);
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request)
+        {
+            var productImage = await _context.ProductImages.FindAsync(imageId);
+            if (productImage == null) throw new DTSEShopeeException($"Cannot find an image with id: {imageId}");
+
+            productImage.Caption = request.Caption;
+            productImage.IsDefault = request.IsDefault;
+            productImage.SortOrder = request.SortOrder;
+
+            if (request.ImageFile != null)
+            {
+                productImage.FileSize = request.ImageFile.Length;
+                productImage.ImagePath = await this.SaveFile(request.ImageFile);
+            }
+
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<ProductImageViewModel> GetImageById(int imageId)
+        {
+            var productImage = await _context.ProductImages.FindAsync(imageId);
+            if (productImage == null) throw new DTSEShopeeException($"Cannot find an image with id: {imageId}");
+
+            var productImageViewModel = new ProductImageViewModel()
+            {
+                Id = productImage.Id,
+                Caption = productImage.Caption,
+                DateCreated = productImage.DateCreated,
+                FileSize = productImage.FileSize,
+                ImagePath = productImage.ImagePath,
+                IsDefault = productImage.IsDefault,
+                ProductId = productImage.ProductId,
+                SortOrder = productImage.SortOrder
+            };
+            return productImageViewModel;
         }
     }
 }
