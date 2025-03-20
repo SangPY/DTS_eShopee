@@ -1,4 +1,5 @@
 using DTS_eShopee.Application.Catalog.Products;
+using DTS_eShopee.Application.Common;
 using DTS_eShopee.Data.EF;
 using DTS_eShopee.Utilities.Constants;
 using Microsoft.AspNetCore.Builder;
@@ -32,8 +33,9 @@ namespace DTS_eShopee.BackendApi
                  options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
             //Declare DI
+            services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IPublicProductService, PublicProductService>();
-
+            services.AddTransient<IManageProductService, ManageProductService>();
             services.AddControllersWithViews();
 
             services.AddSwaggerGen(c =>

@@ -24,5 +24,7 @@ namespace DTS_eShopee.Application.Catalog.Products
         Task AddViewcount(int productId);
 
         Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
+
+        Task<ProductViewModel> GetById(int productId, string languageId);
     }
 }
