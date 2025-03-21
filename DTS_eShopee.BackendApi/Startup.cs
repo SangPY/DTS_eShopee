@@ -4,6 +4,9 @@ using DTS_eShopee.Application.System.Users;
 using DTS_eShopee.Data.EF;
 using DTS_eShopee.Data.Entities;
 using DTS_eShopee.Utilities.Constants;
+using DTS_eShopee.ViewModels.System.Users;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -51,7 +54,12 @@ namespace DTS_eShopee.BackendApi
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
+            services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+            services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
+
+            services.AddControllers()
+               .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             services.AddSwaggerGen(c =>
             {
