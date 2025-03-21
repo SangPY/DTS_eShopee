@@ -32,8 +32,8 @@ namespace DTS_eShopee.BackendApi.Controllers
             {
                 return BadRequest("Username or password is incorrect!");
             }
-            //return Ok(resultToken);
-            return Ok(new { token = resultToken });
+            return Ok(resultToken);
+            //return Ok(new { token = resultToken });
         }
 
         [HttpPost("register")]
