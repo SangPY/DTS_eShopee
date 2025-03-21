@@ -20,7 +20,7 @@ namespace DTS_eShopee.BackendApi.Controllers
 
         [HttpPost("authenticate")]
         [AllowAnonymous]
-        public async Task<ActionResult> Authenticate([FromForm] LoginRequest request)
+        public async Task<ActionResult> Authenticate([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -38,7 +38,7 @@ namespace DTS_eShopee.BackendApi.Controllers
 
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<ActionResult> Register([FromForm] RegisterRequest request)
+        public async Task<ActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
             {
