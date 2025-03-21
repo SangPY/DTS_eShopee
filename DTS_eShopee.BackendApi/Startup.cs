@@ -1,10 +1,13 @@
 using DTS_eShopee.Application.Catalog.Products;
 using DTS_eShopee.Application.Common;
+using DTS_eShopee.Application.System.Users;
 using DTS_eShopee.Data.EF;
+using DTS_eShopee.Data.Entities;
 using DTS_eShopee.Utilities.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,10 +35,20 @@ namespace DTS_eShopee.BackendApi
             services.AddDbContext<DTSEShopeeDbContext>(options =>
                  options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
 
+            services.AddIdentity<AppUser, AppRole>()
+                      .AddEntityFrameworkStores<DTSEShopeeDbContext>()
+                      .AddDefaultTokenProviders();
+
             //Declare DI
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IPublicProductService, PublicProductService>();
             services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddTransient<IUserService, UserService>();
+
+            services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+            services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+
             services.AddControllersWithViews();
 
             services.AddSwaggerGen(c =>
