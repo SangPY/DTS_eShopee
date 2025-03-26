@@ -36,7 +36,8 @@ namespace DTS_eShopee.BackendApi.Controllers
             //return Ok(new { token = resultToken });
         }
 
-        [HttpPost("register")]
+        //[HttpPost("register")]
+        [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Register([FromBody] RegisterRequest request)
         {
