@@ -1,4 +1,5 @@
-﻿using DTS_eShopee.ViewModels.System.Users;
+﻿using DTS_eShopee.ViewModels.Common;
+using DTS_eShopee.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,7 @@ namespace DTS_eShopee.Application.System.Users
         Task<string> Authencate(LoginRequest request);
 
         Task<bool> Register(RegisterRequest request);
+
+        Task<PagedResult<UserViewModel>> GetUsersPaging(GetUserPagingRequest request);
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DTS_eShopee.Application.Catalog.Products
 {
-    public interface IManageProductService
+    public interface IProductService
     {
         Task<int> Create(ProductCreateRequest request);
 
@@ -35,5 +35,7 @@ namespace DTS_eShopee.Application.Catalog.Products
         Task<int> UpdateImage(int imageId, ProductImageUpdateRequest product);
 
         Task<ProductImageViewModel> GetImageById(int imageId);
+
+        Task<PagedResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
     }
 }
