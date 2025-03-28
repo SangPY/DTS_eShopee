@@ -27,12 +27,12 @@ namespace DTS_eShopee.BackendApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var resultToken = await _userService.Authencate(request);
-            if (string.IsNullOrEmpty(resultToken))
+            var result = await _userService.Authencate(request);
+            if (string.IsNullOrEmpty(result.ResultObj))
             {
-                return BadRequest("Username or password is incorrect!");
+                return BadRequest(result);
             }
-            return Ok(resultToken);
+            return Ok(result.ResultObj);
             //return Ok(new { token = resultToken });
         }
 
@@ -47,9 +47,9 @@ namespace DTS_eShopee.BackendApi.Controllers
             }
 
             var result = await _userService.Register(request);
-            if (!result)
+            if (!result.IsSuccessed)
             {
-                return BadRequest("Register is unsuccessful!");
+                return BadRequest(result);
             }
             return Ok();
         }
