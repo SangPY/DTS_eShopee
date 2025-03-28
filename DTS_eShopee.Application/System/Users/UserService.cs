@@ -127,5 +127,46 @@ namespace DTS_eShopee.Application.System.Users
             };
             return new ApiSuccessResult<PagedResult<UserViewModel>>(pagedResult);
         }
+
+        public async Task<ApiResult<bool>> Update(Guid id, UserUpdateRequest request)
+        {
+            if (await _userManager.Users.AnyAsync(x => x.Email == request.Email && x.Id != id))
+            {
+                return new ApiErrorResult<bool>("Emai đã tồn tại");
+            }
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            user.Dob = request.Dob;
+            user.Email = request.Email;
+            user.FirstName = request.FirstName;
+            user.LastName = request.LastName;
+            user.PhoneNumber = request.PhoneNumber;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return new ApiSuccessResult<bool>();
+            }
+
+            return new ApiErrorResult<bool>("Cập nhật không thành công");
+        }
+
+        public async Task<ApiResult<UserViewModel>> GetById(Guid id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<UserViewModel>("User không tồn tại");
+            }
+            var userVm = new UserViewModel()
+            {
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                FirstName = user.FirstName,
+                Dob = user.Dob,
+                Id = user.Id,
+                LastName = user.LastName
+            };
+            return new ApiSuccessResult<UserViewModel>(userVm);
+        }
     }
 }

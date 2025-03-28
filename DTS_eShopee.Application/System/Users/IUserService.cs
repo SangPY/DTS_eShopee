@@ -15,6 +15,8 @@ namespace DTS_eShopee.Application.System.Users
 
         Task<ApiResult<PagedResult<UserViewModel>>> GetUsersPaging(GetUserPagingRequest request);
 
-        //Task<ApiResult<bool>> Update(Guid id, UserUpdateRequest request);
+        Task<ApiResult<bool>> Update(Guid id, UserUpdateRequest request);
+
+        Task<ApiResult<UserViewModel>> GetById(Guid id);
     }
 }
