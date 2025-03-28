@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DTS_eShopee.AdminApp.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
         public override void OnActionExecuting(ActionExecutingContext context)
