@@ -101,5 +101,12 @@ namespace DTS_eShopee.AdminApp.Controllers
             ModelState.AddModelError("", result.Message);
             return View(request);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var result = await _userApiClient.GetById(id);
+            return View(result.ResultObj);
+        }
     }
 }
