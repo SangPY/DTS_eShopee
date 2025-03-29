@@ -9,8 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DTS_eShopee.Application.System.Users
@@ -170,6 +173,20 @@ namespace DTS_eShopee.Application.System.Users
                 UserName = user.UserName
             };
             return new ApiSuccessResult<UserViewModel>(userVm);
+        }
+
+        public async Task<ApiResult<bool>> Delete(Guid id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                return new ApiErrorResult<bool>("User không tồn tại");
+            }
+            var reult = await _userManager.DeleteAsync(user);
+            if (reult.Succeeded)
+                return new ApiSuccessResult<bool>();
+
+            return new ApiErrorResult<bool>("Xóa không thành công");
         }
     }
 }
