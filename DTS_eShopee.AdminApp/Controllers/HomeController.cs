@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DTS_eShopee.AdminApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using DTS_eShopee.Utilities.Constants;
+using Microsoft.AspNetCore.Http;
 
 namespace DTS_eShopee.AdminApp.Controllers
 {
@@ -34,6 +36,15 @@ namespace DTS_eShopee.AdminApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public IActionResult Language(NavigationViewModel viewModel)
+        {
+            HttpContext.Session.SetString(SystemConstants.AppSettings.DefaultLanguageId,
+                viewModel.CurrentLanguageId);
+
+            return RedirectToAction("Index");
         }
     }
 }
