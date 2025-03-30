@@ -1,5 +1,6 @@
 using DTS_eShopee.Application.Catalog.Products;
 using DTS_eShopee.Application.Common;
+using DTS_eShopee.Application.System.Roles;
 using DTS_eShopee.Application.System.Users;
 using DTS_eShopee.Data.EF;
 using DTS_eShopee.Data.Entities;
@@ -48,6 +49,7 @@ namespace DTS_eShopee.BackendApi
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoleService, RoleService>();
 
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
