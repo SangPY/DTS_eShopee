@@ -32,7 +32,8 @@ namespace DTS_eShopee.AdminApp.Services
                 $"/api/products/paging?pageIndex={request.PageIndex}" +
                 $"&pageSize={request.PageSize}" +
                 $"&keyword={request.Keyword}" +
-                $"&languageId={request.LanguageId}");
+                $"&languageId={request.LanguageId}" +
+                $"&categoryId={request.CategoryId}");
             return data;
         }
 
