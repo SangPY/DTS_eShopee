@@ -1,4 +1,4 @@
-﻿using DTS_eShopee.AdminApp.Services;
+﻿using DTS_eShopee.ApiIntegration;
 using DTS_eShopee.Utilities.Constants;
 using DTS_eShopee.ViewModels.Catalog.Products;
 using DTS_eShopee.ViewModels.Common;

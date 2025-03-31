@@ -9,7 +9,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using DTS_eShopee.ViewModels.System.Roles;
 
-namespace DTS_eShopee.AdminApp.Services
+namespace DTS_eShopee.ApiIntegration
 {
     public class RoleApiClient : IRoleApiClient
     {

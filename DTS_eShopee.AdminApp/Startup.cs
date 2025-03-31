@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DTS_eShopee.AdminApp.Services;
+using DTS_eShopee.ApiIntegration;
 using DTS_eShopee.ViewModels.System.Users;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;

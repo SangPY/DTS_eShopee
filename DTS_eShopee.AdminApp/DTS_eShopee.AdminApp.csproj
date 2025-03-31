@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DTS_eShopee.ApiIntegration\DTS_eShopee.ApiIntegration.csproj" />
     <ProjectReference Include="..\DTS_eShopee.Utilities\DTS_eShopee.Utilities.csproj" />
     <ProjectReference Include="..\DTS_eShopee.ViewModels\DTS_eShopee.ViewModels.csproj" />
   </ItemGroup>
