@@ -78,7 +78,7 @@ namespace DTS_eShopee.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "bb5cfdb6-f519-43af-87fe-aca73ad748ef",
+                            ConcurrencyStamp = "ad7d7f99-0fd2-4d6a-a7f5-afbd65a6a1f9",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -155,7 +155,7 @@ namespace DTS_eShopee.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5bace8fa-f379-4287-afb0-5b857f9b596d",
+                            ConcurrencyStamp = "2dc3673f-7e43-4d61-b9e7-19100fc78216",
                             Dob = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "sangdothanh95@gmail.com",
                             EmailConfirmed = true,
@@ -164,7 +164,7 @@ namespace DTS_eShopee.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "sangdothanh95@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA87I6ic1iUs/7jMI05y+KHYJX6v7tjcjPlFeRfNksdewPIptP0qshwaUT6klAw1BA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMXVcBthWDXbWT7Nxz+NmHK0iVrcS7mIUy/FZoelb/WDuILoOPWkjVORzVAlIV7tkg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -298,7 +298,7 @@ namespace DTS_eShopee.Data.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            LanguageId = "vi-VN",
+                            LanguageId = "vi",
                             Name = "Áo nam",
                             SeoAlias = "ao-nam",
                             SeoDescription = "Sản phẩm áo thời trang nam",
@@ -308,7 +308,7 @@ namespace DTS_eShopee.Data.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            LanguageId = "en-US",
+                            LanguageId = "en",
                             Name = "Men Shirt",
                             SeoAlias = "men-shirt",
                             SeoDescription = "The shirt products for men",
@@ -318,7 +318,7 @@ namespace DTS_eShopee.Data.Migrations
                         {
                             Id = 3,
                             CategoryId = 2,
-                            LanguageId = "vi-VN",
+                            LanguageId = "vi",
                             Name = "Áo nữ",
                             SeoAlias = "ao-nu",
                             SeoDescription = "Sản phẩm áo thời trang nữ",
@@ -328,7 +328,7 @@ namespace DTS_eShopee.Data.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            LanguageId = "en-US",
+                            LanguageId = "en",
                             Name = "Women Shirt",
                             SeoAlias = "women-shirt",
                             SeoDescription = "The shirt products for women",
@@ -394,13 +394,13 @@ namespace DTS_eShopee.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "vi-VN",
+                            Id = "vi",
                             IsDefault = true,
                             Name = "Tiếng Việt"
                         },
                         new
                         {
-                            Id = "en-US",
+                            Id = "en",
                             IsDefault = false,
                             Name = "English"
                         });
@@ -515,7 +515,7 @@ namespace DTS_eShopee.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2025, 3, 19, 23, 22, 15, 803, DateTimeKind.Local).AddTicks(3148),
+                            DateCreated = new DateTime(2025, 3, 31, 22, 53, 7, 74, DateTimeKind.Local).AddTicks(3450),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
@@ -640,7 +640,7 @@ namespace DTS_eShopee.Data.Migrations
                             Id = 1,
                             Description = "Áo sơ mi nam trắng Việt Tiến",
                             Details = "Áo sơ mi nam trắng Việt Tiến",
-                            LanguageId = "vi-VN",
+                            LanguageId = "vi",
                             Name = "Áo sơ mi nam trắng Việt Tiến",
                             ProductId = 1,
                             SeoAlias = "ao-so-mi-nam-trang-viet-tien",
@@ -652,7 +652,7 @@ namespace DTS_eShopee.Data.Migrations
                             Id = 2,
                             Description = "Viet Tien Men T-Shirt",
                             Details = "Viet Tien Men T-Shirt",
-                            LanguageId = "en-US",
+                            LanguageId = "en",
                             Name = "Viet Tien Men T-Shirt",
                             ProductId = 1,
                             SeoAlias = "viet-tien-men-t-shirt",
