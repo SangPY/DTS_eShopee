@@ -37,5 +37,7 @@ namespace DTS_eShopee.Application.Catalog.Products
         Task<ProductImageViewModel> GetImageById(int imageId);
 
         Task<PagedResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
+
+        Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
     }
 }
