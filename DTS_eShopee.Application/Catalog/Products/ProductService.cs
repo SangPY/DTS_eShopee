@@ -116,19 +116,19 @@ namespace DTS_eShopee.Application.Catalog.Products
             //1. Select join LINQ
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.Id
-                        //join pic in _context.ProductInCategories on p.Id equals pic.ProductId
-                        //join c in _context.Categories on p.Id equals c.Id
-                        //where pt.LanguageId == request.LanguageId
-                        select new { p, pt };
+                        join pic in _context.ProductInCategories on p.Id equals pic.ProductId
+                        join c in _context.Categories on p.Id equals c.Id
+                        where pt.LanguageId == request.LanguageId
+                        select new { p, pt, pic };
 
             //2. filter
             if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.pt.Name.Contains(request.Keyword));
 
-            //if (request.CategoryIds.Count > 0 && request.CategoryIds != null)
-            //{
-            //    query = query.Where(p => request.CategoryIds.Contains(p.pic.CategoryId));
-            //}
+            if (request.CategoryId != 0 && request.CategoryId != null)
+            {
+                query = query.Where(p => p.pic.CategoryId == request.CategoryId);
+            }
 
             //3. Paging
             int totalRow = await query.CountAsync();

@@ -1,3 +1,4 @@
+using DTS_eShopee.Application.Catalog.Categories;
 using DTS_eShopee.Application.Catalog.Products;
 using DTS_eShopee.Application.Common;
 using DTS_eShopee.Application.System.Languages;
@@ -52,6 +53,7 @@ namespace DTS_eShopee.BackendApi
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<ILanguageService, LanguageService>();
+            services.AddTransient<ICategoryService, CategoryService>();
 
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
