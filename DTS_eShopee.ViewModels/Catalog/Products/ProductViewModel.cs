@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -33,5 +34,7 @@ namespace DTS_eShopee.ViewModels.Catalog.Products
         public string LanguageId { set; get; }
 
         public List<string> Categories { get; set; } = new List<string>();
+
+        public bool? IsFeatured { get; set; }
     }
 }
