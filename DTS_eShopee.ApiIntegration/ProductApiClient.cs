@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace DTS_eShopee.AdminApp.Services
+namespace DTS_eShopee.ApiIntegration
 {
     public class ProductApiClient : BaseApiClient, IProductApiClient
     {

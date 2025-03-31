@@ -1,7 +1,7 @@
 ﻿using DTS_eShopee.Utilities.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DTS_eShopee.AdminApp.Services;
+using DTS_eShopee.ApiIntegration;
 using DTS_eShopee.AdminApp.Models;
 using System.Threading.Tasks;
 

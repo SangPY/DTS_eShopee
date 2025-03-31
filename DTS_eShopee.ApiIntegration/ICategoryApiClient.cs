@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DTS_eShopee.AdminApp.Services
+namespace DTS_eShopee.ApiIntegration
 {
     public interface ICategoryApiClient
     {
