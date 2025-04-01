@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using LazZiya.ExpressLocalization;
 using Microsoft.AspNetCore.Localization;
+using DTS_eShopee.ApiIntegration;
+using Microsoft.AspNetCore.Http;
 
 namespace DTS_eShopee.WebApp
 {
@@ -27,7 +29,7 @@ namespace DTS_eShopee.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddHttpClient();
 
             var cultures = new[]
             {
@@ -64,7 +66,15 @@ namespace DTS_eShopee.WebApp
                          o.SupportedUICultures = cultures;
                          o.DefaultRequestCulture = new RequestCulture("vi");
                      };
-                 }); ;
+                 });
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<ISlideApiClient, SlideApiClient>();
+            services.AddTransient<IProductApiClient, ProductApiClient>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,6 +98,8 @@ namespace DTS_eShopee.WebApp
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseRequestLocalization();
 

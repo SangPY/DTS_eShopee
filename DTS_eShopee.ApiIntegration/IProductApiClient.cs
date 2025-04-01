@@ -1,5 +1,6 @@
 ﻿using DTS_eShopee.ViewModels.Catalog.Products;
 using DTS_eShopee.ViewModels.Common;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DTS_eShopee.ApiIntegration
@@ -13,5 +14,7 @@ namespace DTS_eShopee.ApiIntegration
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
 
         Task<ProductViewModel> GetById(int id, string languageId);
+
+        Task<List<ProductViewModel>> GetFeaturedProducts(string languageId, int take);
     }
 }
