@@ -42,5 +42,7 @@ namespace DTS_eShopee.Application.Catalog.Products
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
 
         Task<List<ProductViewModel>> GetFeaturedProducts(string languageId, int take);
+
+        Task<List<ProductViewModel>> GetLatestProducts(string languageId, int take);
     }
 }
