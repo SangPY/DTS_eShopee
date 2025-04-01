@@ -1,4 +1,5 @@
-﻿using DTS_eShopee.ViewModels.Catalog.ProductImages;
+﻿using DTS_eShopee.Data.Entities;
+using DTS_eShopee.ViewModels.Catalog.ProductImages;
 using DTS_eShopee.ViewModels.Catalog.Products;
 using DTS_eShopee.ViewModels.Common;
 using System;
@@ -39,5 +40,7 @@ namespace DTS_eShopee.Application.Catalog.Products
         Task<PagedResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
 
         Task<ApiResult<bool>> CategoryAssign(int id, CategoryAssignRequest request);
+
+        Task<List<ProductViewModel>> GetFeaturedProducts(string languageId, int take);
     }
 }

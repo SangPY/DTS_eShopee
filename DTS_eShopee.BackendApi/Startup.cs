@@ -4,6 +4,7 @@ using DTS_eShopee.Application.Common;
 using DTS_eShopee.Application.System.Languages;
 using DTS_eShopee.Application.System.Roles;
 using DTS_eShopee.Application.System.Users;
+using DTS_eShopee.Application.Utilities.Slides;
 using DTS_eShopee.Data.EF;
 using DTS_eShopee.Data.Entities;
 using DTS_eShopee.Utilities.Constants;
@@ -54,6 +55,7 @@ namespace DTS_eShopee.BackendApi
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<ILanguageService, LanguageService>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ISlideService, SlideService>();
 
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();

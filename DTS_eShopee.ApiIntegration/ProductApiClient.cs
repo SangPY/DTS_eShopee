@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Text;
+using System.Collections.Generic;
 
 namespace DTS_eShopee.ApiIntegration
 {
@@ -104,6 +105,12 @@ namespace DTS_eShopee.ApiIntegration
         {
             var data = await GetAsync<ProductViewModel>($"/api/products/{id}/{languageId}");
 
+            return data;
+        }
+
+        public async Task<List<ProductViewModel>> GetFeaturedProducts(string languageId, int take)
+        {
+            var data = await GetListAsync<ProductViewModel>($"/api/products/featured/{languageId}/{take}");
             return data;
         }
     }
