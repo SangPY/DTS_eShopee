@@ -122,7 +122,7 @@
     <comment>/Home/Index</comment>
   </data>
   <data name="categoryUrl" xml:space="preserve">
-    <value>Danh mục</value>
+    <value>danh-muc</value>
     <comment>Layouts</comment>
   </data>
   <data name="Contact" xml:space="preserve">
@@ -150,7 +150,7 @@
     <comment>Layouts</comment>
   </data>
   <data name="productUrl" xml:space="preserve">
-    <value>Sản phẩm</value>
+    <value>san-pham</value>
     <comment>Layouts</comment>
   </data>
   <data name="Specials Offer" xml:space="preserve">
