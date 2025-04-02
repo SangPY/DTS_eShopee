@@ -20,5 +20,7 @@ namespace DTS_eShopee.ApiIntegration
         Task<List<ProductViewModel>> GetLatestProducts(string languageId, int take);
 
         Task<bool> UpdateProduct(ProductUpdateRequest request);
+
+        Task<bool> DeleteProduct(int id);
     }
 }
