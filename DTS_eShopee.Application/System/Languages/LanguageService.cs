@@ -30,7 +30,8 @@ namespace DTS_eShopee.Application.System.Languages
             var languages = await _context.Languages.Select(x => new LanguageViewModel()
             {
                 Id = x.Id,
-                Name = x.Name
+                Name = x.Name,
+                IsDefault = x.IsDefault
             }).ToListAsync();
             return new ApiSuccessResult<List<LanguageViewModel>>(languages);
         }
