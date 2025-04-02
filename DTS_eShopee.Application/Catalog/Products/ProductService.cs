@@ -137,7 +137,7 @@ namespace DTS_eShopee.Application.Catalog.Products
         {
             //1. Select join LINQ
             var query = from p in _context.Products
-                        join pt in _context.ProductTranslations on p.Id equals pt.Id
+                        join pt in _context.ProductTranslations on p.Id equals pt.ProductId
                         join pic in _context.ProductInCategories on p.Id equals pic.ProductId into ppic
                         from pic in ppic.DefaultIfEmpty()
                         join c in _context.Categories on pic.CategoryId equals c.Id into picc
