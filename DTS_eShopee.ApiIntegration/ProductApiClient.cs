@@ -158,5 +158,10 @@ namespace DTS_eShopee.ApiIntegration
             var response = await client.PutAsync($"/api/products/" + request.Id, requestContent);
             return response.IsSuccessStatusCode;
         }
+
+        public async Task<bool> DeleteProduct(int id)
+        {
+            return await Delete($"/api/products/" + id);
+        }
     }
 }
