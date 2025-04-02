@@ -23,6 +23,7 @@ namespace DTS_eShopee.Application.Catalog.Products
     {
         private readonly DTSEShopeeDbContext _context;
         private readonly IStorageService _storageService;
+        private const string USER_CONTENT_FOLDER_NAME = "user-content";
 
         public ProductService(DTSEShopeeDbContext context, IStorageService storageService)
         {
@@ -109,7 +110,7 @@ namespace DTS_eShopee.Application.Catalog.Products
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
-            return fileName;
+            return "/" + USER_CONTENT_FOLDER_NAME + "/" + fileName;
         }
 
         public async Task<int> Delete(int productId)
@@ -142,8 +143,10 @@ namespace DTS_eShopee.Application.Catalog.Products
                         from pic in ppic.DefaultIfEmpty()
                         join c in _context.Categories on pic.CategoryId equals c.Id into picc
                         from c in picc.DefaultIfEmpty()
-                        where pt.LanguageId == request.LanguageId
-                        select new { p, pt, pic, c };
+                        join pi in _context.ProductImages on p.Id equals pi.ProductId into ppi
+                        from pi in ppi.DefaultIfEmpty()
+                        where pt.LanguageId == request.LanguageId && pi.IsDefault == true
+                        select new { p, pt, pic, pi };
 
             //2. filter
             if (!string.IsNullOrEmpty(request.Keyword))
@@ -173,7 +176,8 @@ namespace DTS_eShopee.Application.Catalog.Products
                     SeoDescription = x.pt.SeoDescription,
                     SeoTitle = x.pt.SeoTitle,
                     Stock = x.p.Stock,
-                    ViewCount = x.p.ViewCount
+                    ViewCount = x.p.ViewCount,
+                    ThumbnailImage = x.pi.ImagePath
                 }).ToListAsync();
 
             //4. Select and projection
@@ -246,6 +250,8 @@ namespace DTS_eShopee.Application.Catalog.Products
                                     where pic.ProductId == productId && ct.LanguageId == languageId
                                     select ct.Name).ToListAsync();
 
+            var image = await _context.ProductImages.Where(x => x.ProductId == productId && x.IsDefault == true).FirstOrDefaultAsync();
+
             var productViewModel = new ProductViewModel()
             {
                 Id = product.Id,
@@ -261,7 +267,8 @@ namespace DTS_eShopee.Application.Catalog.Products
                 SeoTitle = productTranslation != null ? productTranslation.SeoTitle : null,
                 Stock = product.Stock,
                 ViewCount = product.ViewCount,
-                Categories = categories
+                Categories = categories,
+                ThumbnailImage = image != null ? image.ImagePath : "no-image.jpg"
             };
             return productViewModel;
         }
