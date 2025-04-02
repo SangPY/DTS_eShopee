@@ -15,6 +15,7 @@ using System.IO;
 using System.Net.Http.Headers;
 using DTS_eShopee.ViewModels.Catalog.ProductImages;
 using static System.Net.Mime.MediaTypeNames;
+using DTS_eShopee.Utilities.Constants;
 
 namespace DTS_eShopee.Application.Catalog.Products
 {
@@ -38,6 +39,39 @@ namespace DTS_eShopee.Application.Catalog.Products
 
         public async Task<int> Create(ProductCreateRequest request)
         {
+            var languages = _context.Languages;
+            var productTranslations = new List<ProductTranslation>();
+
+            foreach (var language in languages)
+            {
+                if (language.Id == request.LanguageId)
+                {
+                    productTranslations.Add(new ProductTranslation()
+                    {
+                        Name = request.Name,
+                        Description = request.Description,
+                        Details = request.Details,
+                        SeoAlias = request.SeoAlias,
+                        SeoDescription = request.SeoDescription,
+                        SeoTitle = request.SeoTitle,
+                        LanguageId = request.LanguageId
+                    });
+                }
+                else
+                {
+                    productTranslations.Add(new ProductTranslation()
+                    {
+                        Name = request.Name,
+                        Description = SystemConstants.ProductConstants.NA,
+                        Details = SystemConstants.ProductConstants.NA,
+                        SeoAlias = SystemConstants.ProductConstants.NA,
+                        SeoDescription = SystemConstants.ProductConstants.NA,
+                        SeoTitle = SystemConstants.ProductConstants.NA,
+                        LanguageId = language.Id
+                    });
+                }
+            }
+
             var product = new Product()
             {
                 Price = request.Price,
@@ -45,19 +79,7 @@ namespace DTS_eShopee.Application.Catalog.Products
                 Stock = request.Stock,
                 ViewCount = 0,
                 DateCreated = DateTime.Now,
-                ProductTranslations = new List<ProductTranslation>()
-                {
-                    new ProductTranslation ()
-                    {
-                        Name =  request.Name,
-                        Description = request.Description,
-                        Details = request.Details,
-                        SeoDescription = request.SeoDescription,
-                        SeoAlias = request.SeoAlias,
-                        SeoTitle = request.SeoTitle,
-                        LanguageId = request.LanguageId
-                    }
-                }
+                ProductTranslations = productTranslations
             };
 
             // Save image
