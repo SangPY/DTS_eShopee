@@ -8,6 +8,8 @@ namespace DTS_eShopee.Utilities.Constants
     {
         public const string MainConnectionString = "DTS_eShopeeDatabase";
 
+        public const string CartSession = "CartSession";
+
         public class AppSettings
         {
             public const string DefaultLanguageId = "DefaultLanguageId";
