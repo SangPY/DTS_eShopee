@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Localization;
 using DTS_eShopee.ApiIntegration;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using FluentValidation.AspNetCore;
+using DTS_eShopee.ViewModels.System.Users;
 
 namespace DTS_eShopee.WebApp
 {
@@ -39,6 +41,7 @@ namespace DTS_eShopee.WebApp
              };
 
             services.AddControllersWithViews()
+                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>())
                  .AddExpressLocalization<ExpressLocalizationResource, ViewLocalizationResource>(ops =>
                  {
                      // When using all the culture providers, the localization process will
